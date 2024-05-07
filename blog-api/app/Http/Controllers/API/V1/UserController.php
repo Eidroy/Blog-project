@@ -19,17 +19,17 @@ class UserController extends Controller
         return UserResource::collection(User::all());
     }
 
-    public function show (User $user)
-    {
-        return UserResource::make($user);
-    }
-
     public function store(StoreUserRequest $request)
     {
         $User = User::create($request->validated());
 
         return UserResource::make($User);
     } 
+
+    public function show (User $user)
+    {
+        return UserResource::make($user);
+    }
 
     public function update(UpdateUserRequest $request, User $user)
     {

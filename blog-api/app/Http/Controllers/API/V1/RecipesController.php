@@ -1,66 +1,49 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
+use App\Models\Recipes;
 use App\Http\Requests\StoreRecipesRequest;
 use App\Http\Requests\UpdateRecipesRequest;
-use App\Models\Recipes;
+
+use App\Http\Resources\RecipesResource;
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+
+
 
 class RecipesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return RecipesResource::collection(Recipes::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreRecipesRequest $request)
     {
-        //
+        $recipes = Recipes::create($request->validated());
+
+        return RecipesResource::make($recipes);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Recipes $recipes)
+    public function show(Recipes $recipe)
     {
-        //
+        return RecipesResource::make($recipe);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Recipes $recipes)
+    public function update(UpdateRecipesRequest $request, Recipes $recipe)
     {
-        //
+        $recipe->update($request->validated());
+
+        return RecipesResource::make($recipe);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateRecipesRequest $request, Recipes $recipes)
+    public function destroy(Recipes $recipe)
     {
-        //
-    }
+        $recipe->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Recipes $recipes)
-    {
-        //
+        return response()->NoContent();
     }
 }

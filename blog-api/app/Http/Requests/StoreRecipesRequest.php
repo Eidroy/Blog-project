@@ -11,7 +11,7 @@ class StoreRecipesRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreRecipesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'Recipe_name' => 'required|string|max:255',
+            'creator' => 'required|string|max:255',
+            'ingredients' => 'required|json',
+            'likes' => 'required|integer',
+            'TimetoCook' => 'required|string',
+            'Timetoprepare' => 'required|string',
+            'category' => 'required|string',
+            'Quisine' => 'required|string',
+            'servings' => 'required|integer',
+            'Nutritional_values' => 'required|json',
         ];
     }
 }
