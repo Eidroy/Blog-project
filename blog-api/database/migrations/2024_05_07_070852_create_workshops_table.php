@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('workshops', function (Blueprint $table) {
-            $table->id('workshop_id');
+            $table->id('id');
             $table->string('workshop_name');
             $table->string('hosted_by');
             $table->string('country');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->integer('attendees');
             $table->integer('payment');
             $table->timestamps();
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'comment_id';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'recipe_id',

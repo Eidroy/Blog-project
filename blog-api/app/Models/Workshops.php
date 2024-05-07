@@ -9,7 +9,7 @@ class Workshops extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'workshop_id';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'workshop_name',

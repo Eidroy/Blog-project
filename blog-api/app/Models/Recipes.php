@@ -9,7 +9,7 @@ class Recipes extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'recipe_id';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'Recipe_name',

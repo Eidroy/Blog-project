@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Recipe_details extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'recipe_detail_id';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'recipe_id',
