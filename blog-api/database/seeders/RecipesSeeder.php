@@ -12,6 +12,6 @@ class RecipesSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        
     }
 }

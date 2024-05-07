@@ -11,7 +11,7 @@ class StorecommentsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StorecommentsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'recipe_id' => ['required', 'integer'],
+            'poster_name' => ['required', 'string'],
+            'comment_text' => ['required', 'string'],
+            'createdAt' => ['required', 'date'],
+            'user_id' => ['required', 'integer'],
+            'rating' => ['required', 'integer'],
+            'approved' => ['required', 'boolean'],
         ];
     }
 }

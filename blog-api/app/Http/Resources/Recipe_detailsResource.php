@@ -16,7 +16,6 @@ class Recipe_detailsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'recipe_id' => $this->recipe_id,
             'content1' => $this->content1,
             'content2' => $this->content2,
             'content3' => $this->content3,

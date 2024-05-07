@@ -17,6 +17,10 @@ return new class extends Migration
             $table->text('content2');
             $table->text('content3');
             $table->text('content4');
+            $table->string('image1');
+            $table->string('image2');
+            $table->string('image3');
+            $table->string('image4');
             $table->timestamps();
         });
     }

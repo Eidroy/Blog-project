@@ -20,12 +20,14 @@ class RecipesResource extends JsonResource
             'creator' => $this->creator,
             'ingredients' => $this->ingredients,
             'likes' => $this->likes,
-            'TimetoCook' => $this->TimetoCook,
-            'Timetoprepare' => $this->Timetoprepare,
+            'timetocook' => $this->timetocook,
+            'Timetoprepare' => $this->timetoprepare,
             'category' => $this->category,
-            'Quisine' => $this->Quisine,
+            'cuisine' => $this->cuisine,
             'servings' => $this->servings,
-            'Nutritional_values' => $this->Nutritional_values,
+            'nutritional_values' => $this->nutritional_values,
+            'detail_id' => $this->detail_id,
+            'search_keywords' => $this->search_keywords,
         ];
     }
 }

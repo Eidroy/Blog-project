@@ -26,7 +26,6 @@ return new class extends Migration
             $table->unsignedBigInteger('detail_id');
             $table->json('search_keywords');
             $table->timestamps();
-            $table->foreign('creator')->references('username')->on('users')->onDelete('cascade');
             $table->foreign('detail_id')->references('id')->on('recipe_details')->onDelete('cascade');
         });
     }

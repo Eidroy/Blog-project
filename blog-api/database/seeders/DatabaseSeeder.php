@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Recipe_details::factory(1)->create();
 
         \App\Models\Recipes::factory(1)->create();
+        \App\Models\Comments::factory(1)->create();
 
     }
 }

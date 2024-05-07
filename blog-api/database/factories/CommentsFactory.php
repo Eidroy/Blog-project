@@ -17,7 +17,13 @@ class CommentsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'recipe_id' => 1,
+            'poster_name' => $this->faker->name(),
+            'comment_text' => $this->faker->text(),
+            'createdAt' => $this->faker->date(),
+            'user_id' => 1,
+            'rating' => 1,
+            'approved' => true,
         ];
     }
 }

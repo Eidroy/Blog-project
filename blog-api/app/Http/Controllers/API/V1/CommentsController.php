@@ -1,66 +1,48 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
+use App\Models\Comments;
 use App\Http\Requests\StorecommentsRequest;
 use App\Http\Requests\UpdatecommentsRequest;
-use App\Models\comments;
+
+use App\Http\Resources\CommentsResource;
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+
 
 class CommentsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return CommentsResource::collection(Comments::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StorecommentsRequest $request)
     {
-        //
+        $comments = Comments::create($request->validated());
+
+        return CommentsResource::make($comments);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(comments $comments)
+    public function show(Comments $comment)
     {
-        //
+        return CommentsResource::make($comment);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(comments $comments)
+    public function update(UpdatecommentsRequest $request, Comments $comment)
     {
-        //
+        $comment->update($request->validated());
+
+        return CommentsResource::make($comment);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatecommentsRequest $request, comments $comments)
+    public function destroy(Comments $comment)
     {
-        //
-    }
+        $comment->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(comments $comments)
-    {
-        //
+        return response()->NoContent();
     }
 }
