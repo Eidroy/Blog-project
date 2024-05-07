@@ -16,14 +16,18 @@ return new class extends Migration
             $table->string('recipe_name');
             $table->string('creator');
             $table->integer('likes');
-            $table->string('TimetoCook');
-            $table->string('Timetoprepare');
+            $table->string('timetocook');
+            $table->string('timetoprepare');
             $table->string('category');
-            $table->string('Quisine');
+            $table->string('cuisine');
             $table->integer('servings');
             $table->json('ingredients');
-            $table->json('Nutritional_values');
+            $table->json('nutritional_values');
+            $table->unsignedBigInteger('detail_id');
+            $table->json('search_keywords');
             $table->timestamps();
+            $table->foreign('creator')->references('username')->on('users')->onDelete('cascade');
+            $table->foreign('detail_id')->references('id')->on('recipe_details')->onDelete('cascade');
         });
     }
 

@@ -11,7 +11,6 @@ class Recipe_details extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'recipe_id',
         'content1',
         'content2',
         'content3',
@@ -23,8 +22,4 @@ class Recipe_details extends Model
         return $this->belongsTo(Recipe::class, 'recipe_id', 'id');
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    }
 }

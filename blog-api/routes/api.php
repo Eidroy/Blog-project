@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\V1\UserController;
 use App\Http\Controllers\API\V1\RecipesController;
+use App\Http\Controllers\API\V1\RecipeDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use App\Http\Controllers\API\V1\RecipesController;
 Route::prefix('v1')->group(function () {
     Route::apiResource('/users', UserController::class);
     Route::apiResource('/recipes', RecipesController::class);
+    Route::apiResource('/recipe_details', RecipeDetailsController::class);
 });
 
 

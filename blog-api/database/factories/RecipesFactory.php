@@ -17,7 +17,18 @@ class RecipesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'Recipe_name' => $this->faker->word,
+            'creator' => 'luisa58',
+            'likes' => $this->faker->randomNumber(),
+            'TimetoCook' => $this->faker->word,
+            'Timetoprepare' => $this->faker->word,
+            'category' => $this->faker->word,
+            'cuisine' => $this->faker->word,
+            'servings' => $this->faker->randomNumber(),
+            'ingredients' => "{\"eggs\": \"2\", \"butter\": \"10gr\", \"bacon\": \"3 strips\"}",
+            'Nutritional_values' => "{\"eggs\": \"2\", \"butter\": \"10gr\", \"bacon\": \"3 strips\"}",
+            'search_keywords' => "{\"eggs\": \"2\", \"butter\": \"10gr\", \"bacon\": \"3 strips\"}",
+            'detail_id' => 1,
         ];
     }
 }

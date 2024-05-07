@@ -15,12 +15,14 @@ class Recipes extends Model
         'Recipe_name',
         'creator',
         'likes',
-        'TimetoCook',
-        'Timetoprepare',
+        'timetocook',
+        'timetoprepare',
         'category',
-        'Quisine',
+        'cuisine',
         'servings',
         'ingredients',
-        'Nutritional_values',
+        'nutritional_values',
+        'detail_id',
+        'search_keywords',
     ];
 }

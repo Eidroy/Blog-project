@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Recipe_details>
  */
-class RecipeDetailsFactory extends Factory
+class Recipe_detailsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,10 @@ class RecipeDetailsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'content1' => $this->faker->word,
+            'content2' => $this->faker->word,
+            'content3' => $this->faker->word,
+            'content4' => $this->faker->word,
         ];
     }
 }
