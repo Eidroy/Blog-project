@@ -11,6 +11,8 @@ use App\Http\Controllers\API\V1\WorkshopsController;
 use App\Http\Controllers\API\V1\LoginController;
 use App\Http\Controllers\API\V1\KeywordController;
 use App\Http\Controllers\API\V1\SearchController;
+use App\Http\Controllers\API\V1\CategoryController;
+use App\Http\Controllers\API\V1\CuisineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,8 @@ Route::prefix('v1')->group(function () {
     Route::post('/auth/login', [LoginController::class, 'login']);
     Route::get('/recipes/keyword/{keyword}', [KeywordController::class, 'search']);
     Route::get('/recipes/search/{criteria}', [SearchController::class, 'search']);
+    Route::get('/recipes/category/{category}', [CategoryController::class, 'search']);
+    Route::get('/recipes/cuisine/{cuisine}', [CuisineController::class, 'search']);
 });
 
 
