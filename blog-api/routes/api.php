@@ -9,7 +9,7 @@ use App\Http\Controllers\API\V1\CommentsController;
 use App\Http\Controllers\API\V1\ContactController;
 use App\Http\Controllers\API\V1\WorkshopsController;
 use App\Http\Controllers\API\V1\LoginController;
-use App\Http\Controllers\API\V1\RecipeKeywordsController;
+use App\Http\Controllers\API\V1\KeywordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ Route::prefix('v1')->group(function () {
 
     Route::post('/auth/register', [LoginController::class, 'register']);
     Route::post('/auth/login', [LoginController::class, 'login']);
-    Route::post('/recipes/keywords', [RecipeKeywordsController::class, 'index']);
+    Route::get('/recipes/keyword/{keyword}', [KeywordController::class, 'search']);
 });
 
 
