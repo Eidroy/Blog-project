@@ -20,4 +20,14 @@ class SearchController extends Controller
         })->get();
         return response()->json($recipes);
     }
+
+    public function searchByName($name)
+    {
+        $recipes = Recipes::where(function ($query) use ($name) {
+            $query->where('recipe_name', 'like', '%' . $name . '%')
+                ->orWhere('category', 'like', '%' . $name . '%')
+                ->orWhere('cuisine', 'like', '%' . $name . '%');
+        })->get();
+        return response()->json($recipes);
+    }
 }

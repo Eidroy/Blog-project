@@ -37,6 +37,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/auth/login', [LoginController::class, 'login']);
     Route::get('/recipes/keyword/{keyword}', [KeywordController::class, 'search']);
     Route::get('/recipes/search/{criteria}', [SearchController::class, 'search']);
+    Route::get('/recipes/searchByName/{name}', [SearchController::class, 'searchByName']);
     Route::get('/recipes/category/{category}', [CategoryController::class, 'search']);
     Route::get('/recipes/cuisine/{cuisine}', [CuisineController::class, 'search']);
 });
