@@ -1,66 +1,48 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
+use App\Models\Workshops;
 use App\Http\Requests\StoreWorkshopsRequest;
 use App\Http\Requests\UpdateWorkshopsRequest;
-use App\Models\Workshops;
+
+use App\Http\Resources\WorkshopsResource;
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class WorkshopsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return WorkshopsResource::collection(Workshops::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreWorkshopsRequest $request)
     {
-        //
+        $workshops = Workshops::create($request->validated());
+
+        return WorkshopsResource::make($workshops);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Workshops $workshops)
+    public function show(Workshops $workshop)
     {
-        //
+        return WorkshopsResource::make($workshop);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Workshops $workshops)
+    public function update(UpdateWorkshopsRequest $request, Workshops $workshop)
     {
-        //
+        $workshop->update($request->validated());
+
+        return WorkshopsResource::make($workshop);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateWorkshopsRequest $request, Workshops $workshops)
+    public function destroy(Workshops $workshop)
     {
-        //
-    }
+        $workshop->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Workshops $workshops)
-    {
-        //
+        return response()->NoContent();
     }
 }

@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('contact');
             $table->string('user_email');
             $table->unsignedBigInteger('user_id');
-            $table->date('date');
-            $table->time('time');
+            $table->string('date');
+            $table->string('time');
             $table->integer('attendees');
             $table->integer('payment');
             $table->timestamps();

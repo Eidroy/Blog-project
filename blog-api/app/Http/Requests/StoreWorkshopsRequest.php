@@ -11,7 +11,7 @@ class StoreWorkshopsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,18 @@ class StoreWorkshopsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'workshop_name' => 'required|string',
+            'hosted_by' => 'required|string',
+            'country' => 'required|string',
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
+            'contact' => 'required|string',
+            'user_email' => 'required|email',
+            'user_id' => 'required|integer',
+            'date' => 'required|string',
+            'time' => 'required|string',
+            'attendees' => 'required|integer',
+            'payment' => 'required|integer',
         ];
     }
 }
