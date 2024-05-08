@@ -8,6 +8,7 @@ use App\Http\Controllers\API\V1\RecipeDetailsController;
 use App\Http\Controllers\API\V1\CommentsController;
 use App\Http\Controllers\API\V1\ContactController;
 use App\Http\Controllers\API\V1\WorkshopsController;
+use App\Http\Controllers\API\V1\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,9 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('/comments', CommentsController::class);
     Route::apiResource('/contact', ContactController::class);
     Route::apiResource('/workshops', WorkshopsController::class);
+
+    Route::post('/auth/register', [LoginController::class, 'register']);
+    Route::post('/auth/login', [LoginController::class, 'login']);
 });
 
 
