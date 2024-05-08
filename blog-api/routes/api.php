@@ -6,6 +6,7 @@ use App\Http\Controllers\API\V1\UserController;
 use App\Http\Controllers\API\V1\RecipesController;
 use App\Http\Controllers\API\V1\RecipeDetailsController;
 use App\Http\Controllers\API\V1\CommentsController;
+use App\Http\Controllers\API\V1\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('/recipes', RecipesController::class);
     Route::apiResource('/recipe_details', RecipeDetailsController::class);
     Route::apiResource('/comments', CommentsController::class);
+    Route::apiResource('/contact', ContactController::class);
 });
 
 
