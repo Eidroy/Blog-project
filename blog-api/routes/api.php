@@ -10,6 +10,7 @@ use App\Http\Controllers\API\V1\ContactController;
 use App\Http\Controllers\API\V1\WorkshopsController;
 use App\Http\Controllers\API\V1\LoginController;
 use App\Http\Controllers\API\V1\KeywordController;
+use App\Http\Controllers\API\V1\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/auth/register', [LoginController::class, 'register']);
     Route::post('/auth/login', [LoginController::class, 'login']);
     Route::get('/recipes/keyword/{keyword}', [KeywordController::class, 'search']);
+    Route::get('/recipes/search/{criteria}', [SearchController::class, 'search']);
 });
 
 

@@ -12,7 +12,7 @@ class Recipes extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'Recipe_name',
+        'recipe_name',
         'creator',
         'likes',
         'timetocook',

@@ -27,7 +27,7 @@ class RecipesFactory extends Factory
             'servings' => $this->faker->randomNumber(),
             'ingredients' => "{\"eggs\": \"2\", \"butter\": \"10gr\", \"bacon\": \"3 strips\"}",
             'Nutritional_values' => "{\"eggs\": \"2\", \"butter\": \"10gr\", \"bacon\": \"3 strips\"}",
-            'search_keywords' => "{\"eggs\": \"2\", \"butter\": \"10gr\", \"bacon\": \"3 strips\"}",
+            'search_keywords' => "{\"keyword1\": \"value1\", \"keyword2\": \"value2\", \"keyword3\": \"value3\"}",
             'detail_id' => 1,
         ];
     }
