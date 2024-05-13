@@ -13,6 +13,8 @@ use App\Http\Controllers\API\V1\KeywordController;
 use App\Http\Controllers\API\V1\SearchController;
 use App\Http\Controllers\API\V1\CategoryController;
 use App\Http\Controllers\API\V1\CuisineController;
+use App\Http\Controllers\API\CloudinaryController;
+use App\Http\Controllers\API\V1\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,8 @@ Route::prefix('v1')->group(function () {
     Route::get('/recipes/searchByName/{name}', [SearchController::class, 'searchByName']);
     Route::get('/recipes/category/{category}', [CategoryController::class, 'search']);
     Route::get('/recipes/cuisine/{cuisine}', [CuisineController::class, 'search']);
+    Route::post('/upload', [CloudinaryController::class, 'upload']);
+    Route::post('/createPost', [PostController::class, 'createPost']);
 });
 
 

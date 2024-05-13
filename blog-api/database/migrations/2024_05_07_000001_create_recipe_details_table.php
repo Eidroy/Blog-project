@@ -17,11 +17,15 @@ return new class extends Migration
             $table->text('content2');
             $table->text('content3');
             $table->text('content4');
-            $table->string('image1');
-            $table->string('image2');
-            $table->string('image3');
-            $table->string('image4');
+            $table->integer('image1');
+            $table->integer('image2');
+            $table->integer('image3');
+            $table->integer('image4');
             $table->timestamps();
+            $table->foreign('image1')->references('id')->on('media')->onDelete('cascade');
+            $table->foreign('image2')->references('id')->on('media')->onDelete('cascade');
+            $table->foreign('image3')->references('id')->on('media')->onDelete('cascade');
+            $table->foreign('image4')->references('id')->on('media')->onDelete('cascade');
         });
     }
 
