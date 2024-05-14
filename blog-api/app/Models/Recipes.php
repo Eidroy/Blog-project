@@ -24,4 +24,14 @@ class Recipes extends Model
         'nutritional_values',
         'search_keywords',
     ];
+
+    public function recipe_details()
+    {
+        return $this->hasOne(Recipe_details::class);
+    }
+
+    public function media()
+    {
+        return $this->hasMany(Media::class);
+    }
 }

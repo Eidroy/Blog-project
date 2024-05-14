@@ -20,11 +20,7 @@ class Recipe_detailsFactory extends Factory
             'content1' => $this->faker->word,
             'content2' => $this->faker->word,
             'content3' => $this->faker->word,
-            'content4' => $this->faker->word,
-            'image1' => $this->faker->word,
-            'image2' => $this->faker->word,
-            'image3' => $this->faker->word,
-            'image4' => $this->faker->word,
+            'content4' => $this->faker->word
         ];
     }
 }

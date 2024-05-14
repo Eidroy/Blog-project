@@ -16,7 +16,7 @@ class RecipesResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->Recipe_name,
+            'name' => $this->recipe_name,
             'creator' => $this->creator,
             'ingredients' => $this->ingredients,
             'likes' => $this->likes,
@@ -26,8 +26,9 @@ class RecipesResource extends JsonResource
             'cuisine' => $this->cuisine,
             'servings' => $this->servings,
             'nutritional_values' => $this->nutritional_values,
-            'detail_id' => $this->detail_id,
             'search_keywords' => $this->search_keywords,
+            'recipe_details' => $this->whenLoaded('recipe_details'),
+            'media' => $this->whenLoaded('media'),
         ];
     }
 }

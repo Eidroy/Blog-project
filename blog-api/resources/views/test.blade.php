@@ -4,7 +4,7 @@
 
 <h2>Test Form for Recipe</h2>
 
-<form action="/api/v1/createPost" method="post" enctype="multipart/form-data">
+<form action="/api/v1/createrecipe" method="post" enctype="multipart/form-data">
     <label for="recipe_name">Recipe Name:</label><br>
     <input type="text" id="recipe_name" name="recipes[recipe_name]"><br>
     

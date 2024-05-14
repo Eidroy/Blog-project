@@ -11,20 +11,11 @@ class Recipe_details extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'recipe_id',
+        'recipes_id',
         'content1',
         'content2',
         'content3',
-        'content4',
-        'image1',
-        'image2',
-        'image3',
-        'image4',
+        'content4'
     ];
-
-    public function recipe()
-    {
-        return $this->belongsTo(Recipe::class, 'recipe_id', 'id');
-    }
 
 }

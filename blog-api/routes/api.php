@@ -44,7 +44,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/recipes/cuisine/{cuisine}', [CuisineController::class, 'search']);
     Route::post('/upload', [CloudinaryController::class, 'upload']);
     Route::post('/createrecipe', [PostController::class, 'createPost']);
-    Route::get('/loadrecipe/{id}', [PostController::class, 'loadPost']);
+    Route::get('/loadrecipe/{recipe_name}', [PostController::class, 'loadPost']);
 });
 
 

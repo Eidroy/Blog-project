@@ -4,15 +4,16 @@ namespace App\Http\Controllers\API\V1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\RecipeDetails;
+use App\Models\Recipe_details;
 use App\Models\Media;
 use App\Models\Recipes;
-use App\Http\Resources\RecipeDetailsResource;
+use App\Http\Resources\Recipe_detailsResource;
 use App\Http\Requests\StoreRecipeDetailsRequest;
 use App\Http\Requests\StoreRecipesRequest;
 use App\Http\Resources\RecipesResource;
 use App\Http\Requests\CloudinaryStoreRequest;
 use App\Http\Resources\MediaResource;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class PostController extends Controller
 {
@@ -54,39 +55,51 @@ class PostController extends Controller
             'ingredients' => $validatedData['recipes']['ingredients']  
         ]);
 
+
         $mediaFiles = $request->file('media_files');
         foreach ($mediaFiles as $file) {
-            $uploadResult = $file->storeOnCloudinary('recipe_images');
-            if ($uploadResult->getPublicId()) {
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $uploadedFile = Cloudinary::upload($file->getRealPath(), [
+                'folder' => 'foodblog',
+                'public_id' => pathinfo($fileName, PATHINFO_FILENAME)
+            ]);
+            if ($uploadedFile->getPublicId()) {
                 Media::create([
-                    'file_url' => $uploadResult->getSecurePath(),
-                    'file_name' => $uploadResult->getFilename(),
-                    'file_type' => $uploadResult->getFileType(),
-                    'size' => $uploadResult->getFileSize(),
-                    'recipe_id' => $recipe->id
+                    'file_url' => $uploadedFile->getSecurePath(),
+                    'file_name' => $fileName,
+                    'file_type' => $uploadedFile->getFileType(),
+                    'medially_id' => $recipe->id,
+                    'medially_type' => $uploadedFile->getFileType(),
+                    'size' => $uploadedFile->getSize(),
+                    'recipes_id' => $recipe->id
                 ]);
             }
         }
 
-        RecipeDetails::create([
-            'recipe_id' => $recipe->id,
+
+        Recipe_details::create([
+            'recipes_id' => $recipe->id,
             'content1' => $validatedData['recipe_details']['content1'],
             'content2' => $validatedData['recipe_details']['content2'],
             'content3' => $validatedData['recipe_details']['content3'],
             'content4' => $validatedData['recipe_details']['content4'],
         ]);
 
-        return new RecipesResource($recipe->load('details', 'media'));
+        return new RecipesResource($recipe->load('recipe_details', 'media'));
       
     }
 
-    public function loadPost (Request $request)
+    public function loadPost($recipe_name)
     {
-        $recipeName = $request->input('recipe_name');
-        $recipe = Recipes::where('recipe_name', $recipeName)->first();
-        if (!$recipe) {
-            return response()->json(['message' => 'Recipe not found'], 404);
+        try {
+            $recipe = Recipes::where('recipe_name', 'LIKE', $recipe_name)->first();
+            if (!$recipe) {
+                return response()->json(['message' => 'Recipe not found'], 404);
+            }
+
+            return new RecipesResource($recipe->load('recipe_details', 'media'));
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e], 500);
         }
-        return new RecipesResource($recipe->load('details', 'media'));
     }
 }
