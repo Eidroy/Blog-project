@@ -19,7 +19,6 @@ class LoginController extends Controller
                 'username' => 'required',
                 'name' => 'required',
                 'lastname' => 'required',
-                'country' => 'required',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|min:8',
             ]);
@@ -35,7 +34,7 @@ class LoginController extends Controller
                 'username' => $request->username,
                 'name' => $request->name,
                 'lastname' => $request->lastname,
-                'country' => $request->country,
+                'country' => $request->country ?? 'Not specified',
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
