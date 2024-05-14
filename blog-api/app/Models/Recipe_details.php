@@ -11,6 +11,7 @@ class Recipe_details extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'recipe_id',
         'content1',
         'content2',
         'content3',

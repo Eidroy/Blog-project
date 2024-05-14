@@ -13,6 +13,7 @@ class Media extends Model
     use MediaAlly;
 
     protected $fillable = [
+        'recipe_id',
         'medially_id',
         'medially_type',
         'file_url',

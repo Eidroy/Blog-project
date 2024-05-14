@@ -22,7 +22,6 @@ class Recipes extends Model
         'servings',
         'ingredients',
         'nutritional_values',
-        'detail_id',
         'search_keywords',
     ];
 }

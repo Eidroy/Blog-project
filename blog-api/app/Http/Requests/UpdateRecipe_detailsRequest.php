@@ -25,11 +25,7 @@ class UpdateRecipe_detailsRequest extends FormRequest
             'content1' => 'required|string',
             'content2' => 'required|string',
             'content3' => 'required|string',
-            'content4' => 'required|string',
-            'image1' => 'required|integer',
-            'image2' => 'required|integer',
-            'image3' => 'required|integer',
-            'image4' => 'required|integer',
+            'content4' => 'required|string'
         ];
     }
 }

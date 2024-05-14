@@ -22,6 +22,7 @@ class CloudinaryStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'recipe_id' => 'required|integer',
             'file_url' => 'required|text|max:1000',
             'medially_type' => 'required',
             'file_name' => 'required|string|max:255',

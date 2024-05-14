@@ -33,7 +33,6 @@ class StoreRecipesRequest extends FormRequest
             'servings' => 'required|integer',
             'nutritional_values' => 'required|json',
             'search_keywords' => 'required|json',
-            'detail_id' => 'required|integer',
         ];
     }
 }

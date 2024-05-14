@@ -18,74 +18,75 @@ class PostController extends Controller
 {
     public function createPost(Request $request)
     {
-        $request->validate([
-            'recipe' => 'required|array',
+        $validatedData = $request->validate([
+            'recipes' => 'required|array',
             'recipe_details' => 'required|array',
-            'media' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'media_files' => 'required|array|max:4',
+            'media_files.*' => 'mimes:jpeg,jpg,png,gif|max:2048'
         ]);
+
+        $ingredients = explode(", ", $validatedData['recipes']['ingredients']);
+        $validatedData['recipes']['ingredients'] = json_encode($ingredients);
+        
+        $nutritional_values = explode(", ", $validatedData['recipes']['nutritional_values']);
+        $formatted_nutritional_values = [];
+        foreach ($nutritional_values as $value) {
+            list($key, $val) = explode(":", $value);
+            $formatted_nutritional_values[$key] = $val;
+        }
+        $validatedData['recipes']['nutritional_values'] = json_encode($formatted_nutritional_values);
+        
+        $search_keywords = explode(", ", $validatedData['recipes']['search_keywords']);
+        $validatedData['recipes']['search_keywords'] = json_encode($search_keywords);
+
 
         $recipe = Recipes::create([
-            'Recipe_name' => $recipe->Recipe_name,
-            'creator' => $recipe->creator,
-            'ingredients' => $recipe->ingredients,
-            'likes' => $recipe->likes,
-            'timetocook' => $recipe->timetocook,
-            'Timetoprepare' => $recipe->Timetoprepare,
-            'category' => $recipe->category,
-            'cuisine' => $recipe->cuisine,
-            'servings' => $recipe->servings,
-            'nutritional_values' => $recipe->nutritional_values,
-            'detail_id' => $recipe->detail_id,
-            'search_keywords' => $recipe->search_keywords,
+            'recipe_name' => $validatedData['recipes']['recipe_name'],
+            'creator' => $validatedData['recipes']['creator'],
+            'likes' => $validatedData['recipes']['likes'],
+            'timetocook' => $validatedData['recipes']['timetocook'],
+            'timetoprepare' => $validatedData['recipes']['timetoprepare'],
+            'category' => $validatedData['recipes']['category'],
+            'cuisine' => $validatedData['recipes']['cuisine'],
+            'servings' => $validatedData['recipes']['servings'],
+            'nutritional_values' => $validatedData['recipes']['nutritional_values'],
+            'search_keywords' => $validatedData['recipes']['search_keywords'],
+            'ingredients' => $validatedData['recipes']['ingredients']  
         ]);
 
-        $recipeDetails = RecipeDetails::create([
-            'content1' => $recipeDetails->content1,
-            'content2' => $recipeDetails->content2,
-            'content3' => $recipeDetails->content3,
-            'content4' => $recipeDetails->content4,
-            'image1' => $media->file_url,
-            'image2' => $media->file_url,
-            'image3' => $media->file_url,
-            'image4' => $media->file_url,
-        ]);
-
-        $media = [];
-        foreach ($request->file('media') as $file) {
-            $image_name = time(). '.' . $file->getClientOriginalExtension();
-
-            try {
-                $cloudinaryImage = Cloudinary::upload($file->getRealPath(), [
-                    'public_id' => $image_name,
-                    'folder' => 'foodblog'
-                ]);
-
-                $media[] = Media::create([
-                    'file_name' => $image_name,
-                    'medially_id' => 1,
-                    'medially_type' => $file->getClientMimeType(),
-                    'file_url' => $cloudinaryImage->getSecurePath($image_name),
-                    'file_type' => $file->getClientMimeType(),
-                    'size' => $file->getSize(),
-                ]);
-                
-
-
-            } catch (\Exception $e) {
-                \Log::error($e->getMessage());
-
-                return response()->json([
-                    'status' => 500,
-                    'message' => 'Failed to upload image',
-                    'data' => [$e]
+        $mediaFiles = $request->file('media_files');
+        foreach ($mediaFiles as $file) {
+            $uploadResult = $file->storeOnCloudinary('recipe_images');
+            if ($uploadResult->getPublicId()) {
+                Media::create([
+                    'file_url' => $uploadResult->getSecurePath(),
+                    'file_name' => $uploadResult->getFilename(),
+                    'file_type' => $uploadResult->getFileType(),
+                    'size' => $uploadResult->getFileSize(),
+                    'recipe_id' => $recipe->id
                 ]);
             }
         }
 
-        return response()->json([
-            'recipe' => new RecipesResource($recipe),
-            'recipe_details' => new RecipeDetailsResource($recipeDetails),
-            'media' => MediaResource::collection($media),
+        RecipeDetails::create([
+            'recipe_id' => $recipe->id,
+            'content1' => $validatedData['recipe_details']['content1'],
+            'content2' => $validatedData['recipe_details']['content2'],
+            'content3' => $validatedData['recipe_details']['content3'],
+            'content4' => $validatedData['recipe_details']['content4'],
         ]);
+
+        return new RecipesResource($recipe->load('details', 'media'));
+      
+    }
+
+    public function loadPost (Request $request)
+    {
+        $recipeName = $request->input('recipe_name');
+        $recipe = Recipes::where('recipe_name', $recipeName)->first();
+        if (!$recipe) {
+            return response()->json(['message' => 'Recipe not found'], 404);
+        }
+        return new RecipesResource($recipe->load('details', 'media'));
     }
 }

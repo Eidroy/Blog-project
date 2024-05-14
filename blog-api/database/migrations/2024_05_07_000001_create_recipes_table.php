@@ -23,10 +23,8 @@ return new class extends Migration
             $table->integer('servings');
             $table->json('ingredients');
             $table->json('nutritional_values');
-            $table->unsignedBigInteger('detail_id');
             $table->json('search_keywords');
             $table->timestamps();
-            $table->foreign('detail_id')->references('id')->on('recipe_details')->onDelete('cascade');
         });
     }
 
