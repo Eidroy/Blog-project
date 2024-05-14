@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('postviewer');
+    return view('middleware');
 });
+
+Route::get('/NotAuthenticated', function () {
+    return view('middleware');
+})->name('NotAuthenticated');

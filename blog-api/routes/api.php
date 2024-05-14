@@ -29,11 +29,13 @@ use App\Http\Controllers\API\V1\PostController;
 
 Route::prefix('v1')->group(function () {
     Route::apiResource('/users', UserController::class);
-    Route::apiResource('/recipes', RecipesController::class);
+    // Route::apiResource('/recipes', RecipesController::class);
     Route::apiResource('/recipe_details', RecipeDetailsController::class);
     Route::apiResource('/comments', CommentsController::class);
     Route::apiResource('/contact', ContactController::class);
     Route::apiResource('/workshops', WorkshopsController::class);
+    Route::get('/recipes', [RecipesController::class, 'index']);
+    Route::get('/recipes/{recipe}', [RecipesController::class, 'show']);
 
     Route::post('/auth/register', [LoginController::class, 'register']);
     Route::post('/auth/login', [LoginController::class, 'login']);
@@ -47,4 +49,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/loadrecipe/{recipe_name}', [PostController::class, 'loadPost']);
 });
 
-
+Route::middleware('auth:api')->group(function () {
+    Route::patch('/v1/recipes/{recipe}', [RecipesController::class, 'update']);
+    Route::delete('/v1/recipes/{recipe}', [RecipesController::class, 'destroy']);
+});

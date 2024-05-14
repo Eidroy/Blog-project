@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\RegisterRequest;
 
@@ -37,6 +38,7 @@ class LoginController extends Controller
                 'country' => $request->country ?? 'Not specified',
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'api_token' => Str::random(80),
             ]);
 
             return response()->json([
@@ -81,8 +83,8 @@ class LoginController extends Controller
                 ], 401);
             }
 
-            $token = $user->createToken('auth_token')->plainTextToken;
-            $user->remember_token = $token;
+            $token = Str::random(80);
+            $user->api_token = $token;
             $user->save();
 
             return response()->json([

@@ -22,16 +22,16 @@ class UpdateRecipesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'Recipe_name' => 'required|string|max:255',
-            'creator' => 'required|string|max:255',
-            'ingredients' => 'required|json',
-            'likes' => 'required|integer',
-            'TimetoCook' => 'required|string',
-            'Timetoprepare' => 'required|string',
-            'category' => 'required|string',
-            'Quisine' => 'required|string',
-            'servings' => 'required|integer',
-            'Nutritional_values' => 'required|json',
+            'recipe_name' => 'string|max:255',
+            'creator' => 'string|max:255',
+            'ingredients' => 'json',
+            'likes' => 'integer',
+            'TimetoCook' => 'string',
+            'Timetoprepare' => 'string',
+            'category' => 'string',
+            'Quisine' => 'string',
+            'servings' => 'integer',
+            'Nutritional_values' => 'json',
         ];
     }
 }

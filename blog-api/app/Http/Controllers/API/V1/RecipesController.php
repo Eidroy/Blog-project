@@ -16,16 +16,16 @@ use App\Http\Controllers\Controller;
 
 class RecipesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->only(['update', 'destroy']);
+    }
+
+
     public function index()
     {
         return RecipesResource::collection(Recipes::all());
-    }
-
-    public function store(StoreRecipesRequest $request)
-    {
-        $recipes = Recipes::create($request->validated());
-
-        return RecipesResource::make($recipes);
     }
 
     public function show(Recipes $recipe)
