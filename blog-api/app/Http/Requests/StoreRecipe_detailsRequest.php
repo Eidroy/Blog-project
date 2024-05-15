@@ -23,10 +23,7 @@ class StoreRecipe_detailsRequest extends FormRequest
     {
         return [
             'recipe_id' => ['required', 'integer'],
-            'content1' => ['required', 'string'],
-            'content2' => ['required', 'string'],
-            'content3' => ['required', 'string'],
-            'content4' => ['required', 'string']
+            'content' => ['required', 'json'],
         ];
     }
 }

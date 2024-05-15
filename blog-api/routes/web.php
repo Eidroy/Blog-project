@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('middleware');
+    return view('test');
 });
 
 Route::get('/NotAuthenticated', function () {

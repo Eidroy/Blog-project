@@ -12,10 +12,11 @@ class Recipe_details extends Model
 
     protected $fillable = [
         'recipes_id',
-        'content1',
-        'content2',
-        'content3',
-        'content4'
+        'content',
+    ];
+
+    protected $casts = [
+        'content' => 'json',
     ];
 
 }

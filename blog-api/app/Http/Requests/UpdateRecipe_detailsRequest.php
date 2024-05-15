@@ -22,10 +22,7 @@ class UpdateRecipe_detailsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'content1' => 'required|string',
-            'content2' => 'required|string',
-            'content3' => 'required|string',
-            'content4' => 'required|string'
+            'content' => ['required', 'json'],
         ];
     }
 }
