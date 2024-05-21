@@ -12,7 +12,7 @@ class CategoryController extends Controller
     {
         $recipes = Recipes::where('category', $category)->get();
         foreach ($recipes as $recipe) {
-            $recipe->recipe_detail = $recipe->recipeDetail;
+            $recipe->recipe_details = $recipe->recipe_details;
             $recipe->media = $recipe->media;
         }
         return response()->json($recipes);
