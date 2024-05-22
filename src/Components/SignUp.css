@@ -1,0 +1,56 @@
+.signup_main {
+  width: 400px;
+  /* Adjust width as needed */
+  margin: 0 auto;
+  /* Center align horizontally */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.signup_main form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup_main label {
+  margin-bottom: 5px;
+  /* Add margin below labels */
+}
+
+.CountrySelector {
+  width: 50px;
+}
+
+.signup_main input {
+  padding: 8px;
+  /* Add padding to input fields */
+  margin-bottom: 5px;
+  /* Add margin below input fields */
+  border-radius: 4px;
+  /* Add border radius to input fields */
+  border: 1px solid #ccc;
+  /* Add border for visual clarity */
+}
+
+.signup_main button {
+  padding: 10px 20px;
+  /* Add padding to button */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #007bff;
+  /* Button background color */
+  color: #fff;
+  /* Button text color */
+  border: none;
+  /* Remove default button border */
+  border-radius: 4px;
+  /* Add border radius to button */
+  cursor: pointer;
+  /* Change cursor to pointer on hover */
+}
+
+.signup_main button:hover {
+  background-color: #0056b3;
+  /* Darker background color on hover */
+}

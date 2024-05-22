@@ -1,0 +1,26 @@
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    /* Remove default margin */
+    padding: 0;
+    /* Remove default padding */
+}
+
+/* Style the middle content */
+.middle-content {
+
+    overflow-y: auto;
+    /* Add scrollbar if content overflows */
+    padding-bottom: 50px;
+    padding-left: 80px;
+    /* Add padding to prevent content from being hidden under the footer */
+}
+
+.home_image {
+    min-height: 100px;
+    min-width: 100%;
+    background-color: goldenrod;
+    justify-content: center;
+}

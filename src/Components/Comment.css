@@ -1,0 +1,69 @@
+.recipe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%vh;
+}
+
+.recipe {
+    margin: 20px auto;
+    /* Center the content */
+    width: 80%;
+    background-color: #f2f2f2;
+    /* Grey background color */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Shadow effect */
+}
+
+table {
+    width: 100%;
+    /* Make the table fill its container */
+    border-collapse: collapse;
+    /* Collapse borders */
+    height: 100vh;
+    margin-bottom: 20px;
+
+}
+
+th,
+td {
+    width: 50%;
+    /* Set both columns to 50% of the total table size */
+    border: 1px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add border to cells */
+    padding: 8px;
+    /* Add padding to cells */
+    text-align: left;
+    /* Align text to the left */
+    height: 50px;
+}
+
+
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* Add alternating row background color */
+}
+
+th:first-child,
+td:first-child {
+    font-weight: normal;
+    /* Make the first column bold */
+}
+
+.textarea-container {
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Style for the textarea */
+#comment_signup {
+    flex: 1;
+    /* Allow the textarea to grow to fill remaining space */
+
+    margin-right: 20px;
+    /* Add spacing between the textarea and button */
+}

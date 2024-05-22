@@ -1,0 +1,53 @@
+.tbl_recipemain {
+    display: table;
+    width: 100%;
+    margin-left: 40px;
+
+}
+
+.tbl_recipemain tr {
+    display: table-row;
+    border-style: none;
+}
+
+.tbl_recipemain td {
+    display: table-cell;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border-style: none;
+
+}
+
+/* Set width of 1st column to 30% */
+.tbl_recipemain td:first-child {
+    width: 20%;
+}
+
+/* Set width of 2nd column to 70% */
+.tbl_recipemain td:last-child {
+    width: 80%;
+}
+
+.tbl_recipemain input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 3px 5px;
+    margin: 5px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: medium;
+}
+
+button {
+    padding: 10px 20px;
+    display: block;
+    margin: 10px auto;
+    /* Center aligning buttons on small screens */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
