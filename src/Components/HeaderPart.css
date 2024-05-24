@@ -6,9 +6,9 @@
      justify-content: space-around;
      align-items: center;
      position: sticky;
-     background-color: #ec7355;
+     background-color: #f37e60;
      /* Optional: add background color */
-     padding: 10px 20px;
+
      /* Optional: add padding */
      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
      top: 70px;
@@ -35,13 +35,16 @@
  .logo_div {
      width: auto;
      /* Let the width adjust to the content */
+
  }
 
  .logo_div img {
-     width: 220px;
+     width: 250px;
      /* Adjust the width of the logo */
      height: auto;
      /* Maintain aspect ratio */
+
+
  }
 
  .main {

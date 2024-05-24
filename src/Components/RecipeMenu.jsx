@@ -24,17 +24,19 @@ function RecipeMenu() {
     };
 
     return (
-        <div>
+        <div >
             Welcome to Recipe page!
-            <button id="btnrecipe" onClick={fetchRecipes}>Get recipes</button>
+            <button id="btnrecipe" onClick={fetchRecipes} >Get recipes</button>
             <div className="recipe_container">
                 {recipes.map((recipe, index) => (
                     <div className='recipe_card' key={index}>
                         <a href={<RecipePage />}> <h3>{recipe.name}</h3></a>
-
+                        <div className='image'>
+                            <p>Image</p>
+                        </div>
                         <p>Creator: {recipe.creator}</p>
                         <button id="btn_view" onClick={<RecipePage />}>View </button>
-                        <p>Ingredients:{recipe.ingredients}</p>
+
                         <p>Category: {recipe.category}</p>
                         <p>Cuisine: {recipe.cuisine}</p>
                     </div>

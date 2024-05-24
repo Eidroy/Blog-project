@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './HeaderPart.css'
-import myImage from './cook_logo.png';
+import myImage from './Khyatis_CookStory6.png';
 import { Link, BrowserRouter, Router } from 'react-router-dom';
 import ContactUs from './ContactUs';
 import About from './About';

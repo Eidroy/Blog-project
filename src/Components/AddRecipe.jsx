@@ -683,45 +683,71 @@ function AddRecipe() {
         e.preventDefault();
         console.log("insert initiated");
 
-        // Passing fixed values
-        const recipesArray1 = [{
-            recipe_name: "CheeseCake",
-            creator: "John Doe",
-            ingredients: JSON.stringify(["coco", "dark chocolate", "sugar", "fresh creme", "Strawberry", "creme cheese"]),
-            likes: 100,
-            timetocook: "30 minutes",
-            timetoprepare: "15 minutes",
-            category: "Dessert",
-            cuisine: "International",
-            servings: 2,
-            nutritional_values: JSON.stringify(["calories: 500", "protein: 20g", "fat: 15g", "carbs: 70g"]),
-            search_keywords: JSON.stringify(["dessert", "Dinner", "cheesecake"]),
+        // Convert ingredients array to a comma-separated string
+        const ingredientsString = recipeData.ingredients.join(', ');
+
+        // Prepare the recipes array
+        const recipesArray = [{
+            recipe_name: recipeData.name,
+            creator: recipeData.creator,
+            ingredients: ingredientsString,
+            //ingredients: "Strawberry, Sugar, RoomCreme, White Chocolate, Baking cups",
+            likes: recipeData.likes,
+            timetocook: recipeData.timetocook,
+            timetoprepare: recipeData.timetoprepare,
+            category: recipeData.category,
+            cuisine: recipeData.cuisine,
+            servings: recipeData.servings,
+            nutritional_values: recipeData.nutritional_values,
+            search_keywords: recipeData.search_keywords,
         }];
 
-        const recipeDetailsArray1 = [{
-            content:
-                "Take fresh creme in a bowl"
-        }
-
-        ];
-        const recipeDetailsArray2 = recipeDetailsArray1
+        // Prepare the recipe_details array
+        const recipeDetailsArray = [{
+            content: recipeData.content.join('. ')
+        }];
 
         // Prepare formData
         const formData = new FormData();
-        formData.append('recipes', JSON.stringify(recipesArray1));
-        formData.append('recipe_details', JSON.stringify(recipeDetailsArray2));
+        formData.append('recipes', JSON.stringify(recipesArray));
+        formData.append('recipe_details', JSON.stringify(recipeDetailsArray));
+        /*formData.append('recipes', {
+            "recipes": {
+                "recipe_name": "Strawberry Mousse Cups",
+                "creator": "Khyati Mehta",
+                "ingredients": "Strawberry, Sugar, RoomCreme, White Chocolate, Baking cups",
+                "likes": 100,
+                "timetocook": "1 hour",
+                "timetoprepare": "10 minutes",
+                "category": "Popular",
+                "cuisine": "International",
+                "servings": 2,
+                "nutritional_values": "calories: 200, protein: 20g, fat: 15g, carbs: 70g",
+                "search_keywords": "Mousse, Strawberry, Healthy dessert, Dessert,Dinner,Kids"
+            },
 
-        // Ensure media_files is an array
+
+
+        });*/
+        /* formData.append('recipe_details', {
+             "recipe_details": {
+                 "content": "Choose four of the best-looking strawberries and set these aside to finish the mousse, then hull and roughly chop the rest. Tip these into a blender or food processor along with the sugar and blitz until smooth.Whisk the cream to stiff peaks. Reserve roughly 4 tbsp of the strawberry purée in a small dish, then fold the rest through the whipped cream until it turns an even shade of pink. Divide the reserved purée between four small serving glasses or ramekins. Spoon the mousse over the top, then chill for at least 1 hr. Will keep chilled for up to a day. Just before serving, halve the reserved strawberries and use these to decorate the mousse.Server them in white Chocolate cups"
+ 
+             }
+         });*/
+        // Append file if it exists
         if (file) {
-            formData.append('media', file); // Append file as array item
+            formData.append('media', file);
         }
 
         console.log('Form data prepared:', {
-            recipes: recipesArray1,
-            recipe_details: recipeDetailsArray1,
+            recipes: recipesArray,
+            recipe_details: recipeDetailsArray,
             media: file ? [file] : [],
         });
-
+        /* console.log('Form data prepared:', {
+             formData
+         });*/
         try {
             console.log('Sending request to server...');
             const response = await axios.post('https://foodblog-api-554eaecd7d88.herokuapp.com/api/v1/createrecipe', formData, {
@@ -782,6 +808,7 @@ function AddRecipe() {
                                 {recipeData.ingredients.map((ingredient, index) => (
                                     <div key={index}>
                                         <input
+
                                             type="text"
                                             value={ingredient}
                                             onChange={(e) => handleIngredientChange(index, e.target.value)}
@@ -799,7 +826,9 @@ function AddRecipe() {
                                         <input
                                             type="text"
                                             value={step}
+
                                             onChange={(e) => handleRecipeStepChange(index, e.target.value)}
+
                                         />
                                     </div>
                                 ))}
