@@ -44,7 +44,7 @@ class PostController extends Controller
         $recipe->save();
         
         $recipeDetailsData = $request->recipe_details;
-        $recipeDetailsData['content'] = explode(', ', $recipeDetailsData['content']);
+        // $recipeDetailsData['content'] = explode(', ', $recipeDetailsData['content']);
         // $recipeDetailsData['content'] = json_encode($recipeDetailsData['content']);
         $recipe->recipe_details()->create($recipeDetailsData);
 

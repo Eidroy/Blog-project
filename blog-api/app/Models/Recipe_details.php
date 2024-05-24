@@ -16,7 +16,7 @@ class Recipe_details extends Model
     ];
 
     protected $casts = [
-        'content' => 'json',
+        'content' => 'string',
     ];
 
 }

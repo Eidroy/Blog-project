@@ -51,17 +51,8 @@
     <input type="file" id="media_files" name="media_files[]" multiple><br>
 
 
-    <label for="content1">Content 1:</label><br>
-    <input type="text" id="content1" name="recipe_details[content1]"><br>
-
-    <label for="content2">Content 2:</label><br>
-    <input type="text" id="content2" name="recipe_details[content2]"><br>
-
-    <label for="content3">Content 3:</label><br>
-    <input type="text" id="content3" name="recipe_details[content3]"><br>
-
-    <label for="content4">Content 4:</label><br>
-    <input type="text" id="content4" name="recipe_details[content4]"><br>
+    <label for="content1">Content:</label><br>
+    <input type="text" id="content1" name="recipe_details[content]"><br>
 
     <input type="submit" value="Submit">
 </form> 
