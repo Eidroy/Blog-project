@@ -1,7 +1,5 @@
 # Documentation for the API
 
-## All Endpoints are tested and working :)
-
 ## API URL
 
     https://foodblog-api-554eaecd7d88.herokuapp.com/
@@ -40,8 +38,10 @@ For this i pass 3 objects , recipes, recipe_details and media_files
 
 | recipe_details | data type |
 | -------------- | --------- |
-| content        | string    |
-
+| content1       | string    |
+| content2       | string    |
+| content3       | string    |
+| content4       | string    |
 
 | media_files                    | data type |
 | ------------------------------ | --------- |
